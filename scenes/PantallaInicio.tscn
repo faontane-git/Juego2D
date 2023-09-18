@@ -1,0 +1,542 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://BGM/6. ES_Forest Exploration - Sight of Wonders.mp3" type="AudioStream" id=1]
+[ext_resource path="res://fonts/new_dynamicfont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://SFX/3.1. mouse-click1.ogg" type="AudioStream" id=4]
+[ext_resource path="res://assets/PopUp.png" type="Texture" id=11]
+[ext_resource path="res://assets/personajes/p3.png" type="Texture" id=12]
+[ext_resource path="res://assets/personajes/p2.png" type="Texture" id=13]
+[ext_resource path="res://assets/personajes/jaguar.png" type="Texture" id=14]
+[ext_resource path="res://images/Continuar.png" type="Texture" id=15]
+[ext_resource path="res://assets/personajes/p1.png" type="Texture" id=16]
+[ext_resource path="res://assets/personajes/p4.png" type="Texture" id=17]
+[ext_resource path="res://assets/iconos/iconos-X-cerrar.png" type="Texture" id=18]
+[ext_resource path="res://images/Nueva.png" type="Texture" id=19]
+[ext_resource path="res://images/Mi Bosque.png" type="Texture" id=20]
+[ext_resource path="res://images/Cargar.png" type="Texture" id=21]
+[ext_resource path="res://images/principal.png" type="Texture" id=22]
+[ext_resource path="res://scenes/PantallaInicio.gd" type="Script" id=23]
+
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://fonts/Righteous-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 7 )
+
+[sub_resource type="DynamicFontData" id=8]
+font_path = "res://fonts/Righteous-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 8 )
+
+[sub_resource type="DynamicFontData" id=9]
+font_path = "res://fonts/Righteous-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=10]
+size = 42
+font_data = SubResource( 9 )
+
+[node name="Principal" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.0
+margin_right = 6.0
+script = ExtResource( 23 )
+
+[node name="Fondo" type="TextureRect" parent="."]
+modulate = Color( 1, 1, 1, 0.705882 )
+margin_left = -23.0
+margin_top = -28.0
+margin_right = 1055.0
+margin_bottom = 626.0
+texture = ExtResource( 22 )
+expand = true
+stretch_mode = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+margin_left = 2.0
+margin_top = -4.0
+margin_right = 1023.0
+margin_bottom = 338.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Mi Bosque" type="TextureRect" parent="HBoxContainer2"]
+margin_left = 251.0
+margin_right = 769.0
+margin_bottom = 342.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 20 )
+stretch_mode = 5
+
+[node name="Cerrar" type="TextureButton" parent="."]
+margin_left = 946.0
+margin_top = 13.0
+margin_right = 1014.0
+margin_bottom = 81.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 18 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 319.0
+margin_right = 3410.0
+margin_bottom = 1129.0
+rect_scale = Vector2( 0.3, 0.3 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Nuevo" type="TextureButton" parent="HBoxContainer"]
+margin_left = 444.0
+margin_top = 91.0
+margin_right = 1703.0
+margin_bottom = 719.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 19 )
+stretch_mode = 4
+
+[node name="Cargar" type="TextureButton" parent="HBoxContainer"]
+margin_left = 1707.0
+margin_top = 91.0
+margin_right = 2966.0
+margin_bottom = 718.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 21 )
+stretch_mode = 5
+
+[node name="Popup" type="Popup" parent="."]
+visible = true
+margin_left = 344.0
+margin_top = 198.0
+margin_right = 671.0
+margin_bottom = 421.0
+popup_exclusive = true
+
+[node name="TextureRect" type="TextureRect" parent="Popup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -150.0
+margin_right = 200.0
+margin_bottom = 150.0
+texture = ExtResource( 11 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -34.0
+margin_top = -12.0
+margin_right = 32.0
+margin_bottom = 2.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="Popup/VBoxContainer"]
+margin_top = 71.0
+margin_right = 393.0
+margin_bottom = 109.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "¿Desea salir del juego?"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Popup/VBoxContainer"]
+margin_top = 129.0
+margin_right = 393.0
+margin_bottom = 166.0
+alignment = 1
+
+[node name="Button" type="Button" parent="Popup/VBoxContainer/HBoxContainer" groups=["botones"]]
+margin_left = 85.0
+margin_right = 223.0
+margin_bottom = 37.0
+focus_mode = 1
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 0
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.0117647, 0.188235, 1, 1 )
+custom_fonts/font = SubResource( 6 )
+enabled_focus_mode = 1
+text = "CANCELAR"
+flat = true
+
+[node name="Button2" type="Button" parent="Popup/VBoxContainer/HBoxContainer" groups=["botones"]]
+margin_left = 227.0
+margin_right = 308.0
+margin_bottom = 37.0
+focus_mode = 1
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.235294, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+enabled_focus_mode = 1
+text = "SALIR"
+flat = true
+
+[node name="Seleccionar" type="Popup" parent="."]
+visible = true
+margin_left = -1.0
+margin_top = -3.0
+margin_right = 1035.0
+margin_bottom = 610.0
+popup_exclusive = true
+
+[node name="Fondo2" type="TextureRect" parent="Seleccionar"]
+margin_left = -23.0
+margin_top = -28.0
+margin_right = 1055.0
+margin_bottom = 626.0
+texture = ExtResource( 22 )
+expand = true
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Seleccionar"]
+margin_left = 3.0
+margin_top = 75.0
+margin_right = 1026.0
+margin_bottom = 136.0
+custom_fonts/font = SubResource( 10 )
+text = "SELECCIONA A TU PERSONAJE:"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Seleccionar"]
+margin_top = 126.0
+margin_right = 3807.0
+margin_bottom = 1736.0
+rect_scale = Vector2( 0.27, 0.3 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="personaje1" type="TextureButton" parent="Seleccionar/HBoxContainer"]
+margin_left = 52.0
+margin_top = 84.0
+margin_right = 974.0
+margin_bottom = 1525.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 16 )
+
+[node name="personaje2" type="TextureButton" parent="Seleccionar/HBoxContainer"]
+margin_left = 978.0
+margin_top = 84.0
+margin_right = 1901.0
+margin_bottom = 1525.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 13 )
+
+[node name="personaje3" type="TextureButton" parent="Seleccionar/HBoxContainer"]
+margin_left = 1905.0
+margin_top = 84.0
+margin_right = 2828.0
+margin_bottom = 1525.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 12 )
+
+[node name="personaje4" type="TextureButton" parent="Seleccionar/HBoxContainer"]
+margin_left = 2832.0
+margin_top = 84.0
+margin_right = 3755.0
+margin_bottom = 1525.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource( 17 )
+
+[node name="Cerrar2" type="TextureButton" parent="Seleccionar"]
+margin_left = 946.0
+margin_top = 13.0
+margin_right = 1016.0
+margin_bottom = 93.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 18 )
+
+[node name="CargarPartida" type="Popup" parent="."]
+visible = true
+margin_left = -1.0
+margin_top = -3.0
+margin_right = 1035.0
+margin_bottom = 610.0
+popup_exclusive = true
+
+[node name="Fondo2" type="TextureRect" parent="CargarPartida"]
+margin_left = -22.0
+margin_top = -29.0
+margin_right = 1056.0
+margin_bottom = 625.0
+texture = ExtResource( 22 )
+expand = true
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="CargarPartida"]
+margin_left = 3.0
+margin_top = 75.0
+margin_right = 1026.0
+margin_bottom = 136.0
+custom_fonts/font = ExtResource( 2 )
+text = "SELECCIONA A TU PERSONAJE:"
+align = 1
+valign = 1
+
+[node name="CerrarCarga" type="TextureButton" parent="CargarPartida"]
+margin_left = 946.0
+margin_top = 13.0
+margin_right = 1016.0
+margin_bottom = 93.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 18 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CargarPartida"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 176.0
+margin_top = 148.0
+margin_right = -94.0
+margin_bottom = -49.0
+
+[node name="Partidas" type="VBoxContainer" parent="CargarPartida/ScrollContainer"]
+
+[node name="Nombre" type="Popup" parent="."]
+visible = true
+margin_left = -1.0
+margin_top = -3.0
+margin_right = 1035.0
+margin_bottom = 610.0
+popup_exclusive = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Fondo2" type="TextureRect" parent="Nombre"]
+margin_left = 9.0
+margin_top = -19.0
+margin_right = 1072.0
+margin_bottom = 610.0
+texture = ExtResource( 22 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Fondo3" type="TextureRect" parent="Nombre"]
+margin_left = -7.0
+margin_top = 144.0
+margin_right = 309.0
+margin_bottom = 608.0
+texture = ExtResource( 14 )
+expand = true
+stretch_mode = 1
+
+[node name="Label" type="Label" parent="Nombre"]
+margin_left = 3.0
+margin_top = 138.0
+margin_right = 1026.0
+margin_bottom = 199.0
+custom_fonts/font = SubResource( 10 )
+text = "¡BIENVENIDO!"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="Nombre"]
+margin_left = 2.0
+margin_top = 229.0
+margin_right = 1025.0
+margin_bottom = 290.0
+custom_fonts/font = SubResource( 10 )
+text = "Ingresa tu nombre:"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Nombre"]
+margin_left = 7.0
+margin_right = 3814.0
+margin_bottom = 1760.0
+rect_scale = Vector2( 0.267206, 0.305215 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cerrar3" type="TextureButton" parent="Nombre"]
+margin_left = 946.0
+margin_top = 13.0
+margin_right = 1016.0
+margin_bottom = 93.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 18 )
+
+[node name="Label3" type="Label" parent="Nombre"]
+margin_left = 420.0
+margin_top = 368.0
+margin_right = 833.0
+margin_bottom = 425.0
+custom_fonts/font = ExtResource( 2 )
+text = "Máximo 20 caracteres"
+
+[node name="LineEdit" type="LineEdit" parent="Nombre"]
+margin_left = 323.0
+margin_top = 294.0
+margin_right = 704.0
+margin_bottom = 358.0
+
+[node name="Continuar" type="TextureButton" parent="Nombre"]
+margin_left = 388.0
+margin_top = 406.0
+margin_right = 1648.0
+margin_bottom = 1033.0
+rect_scale = Vector2( 0.2, 0.2 )
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource( 15 )
+
+[node name="Advertencia" type="Popup" parent="."]
+visible = true
+margin_left = 11.0
+margin_top = 3.0
+margin_right = 51.0
+margin_bottom = 43.0
+rect_scale = Vector2( 25.6148, 14.9193 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Fondo2" type="TextureRect" parent="Advertencia"]
+margin_left = -0.507519
+margin_top = -1.80973
+margin_right = 41.4925
+margin_bottom = 41.1903
+texture = ExtResource( 22 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="l_advertencia2" type="Label" parent="Advertencia"]
+margin_left = 13.2736
+margin_top = 5.76435
+margin_right = 245.274
+margin_bottom = 52.7644
+rect_rotation = -0.00291505
+rect_scale = Vector2( 0.113381, 0.164608 )
+custom_fonts/font = ExtResource( 2 )
+text = "¡Advertencia!"
+
+[node name="L_mensaje" type="Label" parent="Advertencia"]
+margin_left = 11.1768
+margin_top = 13.0854
+margin_right = 490.177
+margin_bottom = 110.086
+rect_rotation = 0.222109
+rect_scale = Vector2( 0.0723587, 0.120771 )
+custom_fonts/font = ExtResource( 2 )
+text = "        Ingrese un nombre 
+válido en el campo provisto"
+
+[node name="TextureButton" type="TextureButton" parent="Advertencia"]
+margin_left = 12.7283
+margin_top = 25.2031
+margin_right = 1272.73
+margin_bottom = 652.203
+rect_rotation = -0.110912
+rect_scale = Vector2( 0.0103613, 0.0163945 )
+texture_normal = ExtResource( 15 )
+
+[node name="Repetido" type="Popup" parent="."]
+visible = true
+anchor_left = 0.006
+anchor_right = 0.006
+margin_left = 1.856
+margin_right = 1009.86
+margin_bottom = 584.0
+rect_pivot_offset = Vector2( 59, 24 )
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": ""
+}
+
+[node name="Fondo2" type="TextureRect" parent="Repetido"]
+margin_left = -17.0
+margin_top = -24.0
+margin_right = 1053.0
+margin_bottom = 597.0
+texture = ExtResource( 22 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="l_advertencia2" type="Label" parent="Repetido"]
+margin_left = 355.0
+margin_top = 65.0
+margin_right = 587.0
+margin_bottom = 112.0
+rect_scale = Vector2( 2.75585, 2.58393 )
+custom_fonts/font = ExtResource( 2 )
+text = "¡Advertencia!"
+
+[node name="L_mensaje" type="Label" parent="Repetido"]
+margin_left = 327.0
+margin_top = 200.0
+margin_right = 896.0
+margin_bottom = 297.0
+rect_rotation = 0.222109
+rect_scale = Vector2( 1.31529, 1.65383 )
+custom_fonts/font = ExtResource( 2 )
+text = "El nombre ya ha sido registrado 
+        ¡Porfavor Ingrese Otro!"
+
+[node name="BotonSalir" type="TextureButton" parent="Repetido"]
+margin_left = 400.0
+margin_top = 391.0
+margin_right = 1698.0
+margin_bottom = 1036.0
+rect_rotation = -0.110912
+rect_scale = Vector2( 0.211926, 0.217772 )
+texture_normal = ExtResource( 15 )
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -17.0
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[connection signal="pressed" from="Cerrar" to="." method="_on_Cerrar_pressed"]
+[connection signal="pressed" from="HBoxContainer/Nuevo" to="." method="_on_Nuevo_pressed"]
+[connection signal="pressed" from="HBoxContainer/Cargar" to="." method="_on_Cargar_pressed"]
+[connection signal="pressed" from="Popup/VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Popup/VBoxContainer/HBoxContainer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Seleccionar/HBoxContainer/personaje1" to="." method="_on_personaje1_pressed"]
+[connection signal="pressed" from="Seleccionar/HBoxContainer/personaje2" to="." method="_on_personaje2_pressed"]
+[connection signal="pressed" from="Seleccionar/HBoxContainer/personaje3" to="." method="_on_personaje3_pressed"]
+[connection signal="pressed" from="Seleccionar/HBoxContainer/personaje4" to="." method="_on_personaje4_pressed"]
+[connection signal="pressed" from="Seleccionar/Cerrar2" to="." method="_on_Cerrar2_pressed"]
+[connection signal="pressed" from="CargarPartida/CerrarCarga" to="." method="_on_CerrarCarga_pressed"]
+[connection signal="pressed" from="Nombre/Cerrar3" to="." method="_on_Cerrar3_pressed"]
+[connection signal="pressed" from="Nombre/Continuar" to="." method="_on_Continuar_pressed"]
+[connection signal="pressed" from="Advertencia/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Repetido/BotonSalir" to="." method="_on_BotonSalir_pressed"]

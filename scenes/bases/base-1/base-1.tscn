@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Sprites/tilesets/decoraciones.tres" type="TileSet" id=1]
+[ext_resource path="res://hubinicial/Player/Jugador.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/InteractionManager/InteractionManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/baseShop/door.gd" type="Script" id=4]
+[ext_resource path="res://scenes/bases/base.gd" type="Script" id=5]
+
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://.import/inBase-1.png-6d11c9cfe92c7de65b50fa933ebec00d.stex"
+
+[node name="main" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 270.0
+margin_top = 4.0
+margin_right = 730.0
+margin_bottom = 598.0
+texture = SubResource( 1 )
+expand = true
+
+[node name="paredes" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="paredes"]
+polygon = PoolVector2Array( 377, 245, 498, 248, 505, 161, 358, 166, 351, 583, 638, 588, 637, 531, 636, 197, 508, 160, 502, 248, 618, 249, 618, 527, 526, 528, 526, 564, 469, 563, 470, 528, 377, 527 )
+
+[node name="muebles" type="TileMap" parent="."]
+scale = Vector2( 2, 2 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 8 )
+format = 1
+tile_data = PoolIntArray( 983052, 121, 0, 1048593, 119, 0, 1507340, 18, 0 )
+
+[node name="Jugador" parent="." instance=ExtResource( 2 )]
+position = Vector2( 495, 529 )
+scale = Vector2( 2, 2 )
+
+[node name="door" parent="." instance=ExtResource( 3 )]
+position = Vector2( 495, 580 )
+scale = Vector2( 6.8, 0.28 )
+script = ExtResource( 4 )
+targetScene = "res://hubinicial/Hub/GameHub2D.tscn"

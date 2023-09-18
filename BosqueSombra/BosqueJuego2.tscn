@@ -1,0 +1,340 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://assets/Boton Pausa.png" type="Texture" id=1]
+[ext_resource path="res://assets/volumne.png" type="Texture" id=2]
+[ext_resource path="res://BosqueSombra/BosqueJuego2.gd" type="Script" id=3]
+[ext_resource path="res://BosqueSombra/Light2D_Script.gd" type="Script" id=4]
+[ext_resource path="res://assets/light.png" type="Texture" id=5]
+[ext_resource path="res://assets/oso peresozo.png" type="Texture" id=6]
+[ext_resource path="res://assets/corarojo.png" type="Texture" id=7]
+[ext_resource path="res://assets/Boton Finalizar.png" type="Texture" id=8]
+[ext_resource path="res://assets/perro.png" type="Texture" id=9]
+[ext_resource path="res://assets/iguana.png" type="Texture" id=10]
+[ext_resource path="res://assets/Botonvisto.png" type="Texture" id=11]
+[ext_resource path="res://assets/Bosque_fondo.png" type="Texture" id=12]
+[ext_resource path="res://assets/Boton Continuar.png" type="Texture" id=13]
+[ext_resource path="res://assets/mono.png" type="Texture" id=14]
+[ext_resource path="res://assets/tigrillo.png" type="Texture" id=15]
+[ext_resource path="res://assets/anhinga.png" type="Texture" id=16]
+[ext_resource path="res://assets/Boton 2.png" type="Texture" id=17]
+[ext_resource path="res://assets/nivel2.png" type="Texture" id=18]
+[ext_resource path="res://assets/infoperdida.png" type="Texture" id=19]
+
+[sub_resource type="CanvasItemMaterial" id=4]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=5]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=6]
+render_priority = 7
+blend_mode = 1
+
+[sub_resource type="ImageTexture" id=7]
+
+[sub_resource type="CanvasItemMaterial" id=15]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=16]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=14]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=17]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=18]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=19]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=20]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=21]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=22]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=23]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=24]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=25]
+blend_mode = 1
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 2256.0
+margin_bottom = 1336.0
+rect_scale = Vector2( 0.454, 0.45 )
+texture = ExtResource( 12 )
+expand = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="TextureRect"]
+scale = Vector2( 2.20264, 2.22222 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color( 0.807843, 0.835294, 1, 1 )
+material = SubResource( 4 )
+margin_left = 450.0
+margin_top = 15.0
+margin_right = 845.0
+margin_bottom = 153.0
+rect_scale = Vector2( 0.238, 0.34 )
+texture = ExtResource( 17 )
+expand = true
+
+[node name="Label" type="Label" parent="."]
+material = SubResource( 1 )
+margin_left = 465.0
+margin_top = 27.0
+margin_right = 505.0
+margin_bottom = 41.0
+rect_scale = Vector2( 1.8, 1.8 )
+text = "00:00"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+position = Vector2( 505, 402 )
+scale = Vector2( 0.294922, 0.294922 )
+texture = ExtResource( 5 )
+script = ExtResource( 4 )
+
+[node name="mono" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 932.0
+margin_top = 234.0
+margin_right = 996.0
+margin_bottom = 298.0
+rect_rotation = 42.9
+texture_normal = ExtResource( 14 )
+expand = true
+
+[node name="ButtonParlante" type="TextureButton" parent="."]
+material = SubResource( 2 )
+margin_left = 959.0
+margin_top = 535.0
+margin_right = 1017.0
+margin_bottom = 593.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="oso_peresozo" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 147.0
+margin_top = 261.0
+margin_right = 208.0
+margin_bottom = 308.0
+rect_rotation = -39.6
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="iguana" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 777.0
+margin_top = 510.0
+margin_right = 861.0
+margin_bottom = 559.0
+texture_normal = ExtResource( 10 )
+expand = true
+
+[node name="pausar" type="TextureButton" parent="."]
+visible = false
+material = SubResource( 5 )
+margin_left = 970.0
+margin_top = 11.0
+margin_right = 1012.0
+margin_bottom = 53.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="pausar_ventana" type="Sprite" parent="."]
+visible = false
+material = SubResource( 6 )
+position = Vector2( 506, 298 )
+normal_map = SubResource( 7 )
+
+[node name="resume" type="TextureButton" parent="pausar_ventana"]
+light_mask = 0
+material = SubResource( 15 )
+margin_left = -110.0
+margin_top = -41.0
+margin_right = 105.0
+margin_bottom = 43.0
+texture_normal = ExtResource( 13 )
+expand = true
+
+[node name="salir" type="TextureButton" parent="pausar_ventana"]
+material = SubResource( 16 )
+margin_left = -83.0
+margin_top = 72.0
+margin_right = 78.0
+margin_bottom = 135.0
+texture_normal = ExtResource( 8 )
+expand = true
+
+[node name="tigrillo" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 283.0
+margin_top = 417.0
+margin_right = 407.0
+margin_bottom = 509.0
+texture_normal = ExtResource( 15 )
+expand = true
+
+[node name="anhinga" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 522.0
+margin_top = 164.0
+margin_right = 562.0
+margin_bottom = 204.0
+texture_normal = ExtResource( 16 )
+expand = true
+
+[node name="Label2" type="Label" parent="."]
+material = SubResource( 14 )
+margin_left = 476.0
+margin_top = 66.0
+margin_right = 525.0
+margin_bottom = 80.0
+text = "NIVEL 2"
+
+[node name="Cora1" type="Sprite" parent="."]
+material = SubResource( 17 )
+position = Vector2( 31, 25 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 7 )
+
+[node name="Cora2" type="Sprite" parent="."]
+material = SubResource( 17 )
+position = Vector2( 67, 25 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 7 )
+
+[node name="Cora3" type="Sprite" parent="."]
+material = SubResource( 17 )
+position = Vector2( 104, 25 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 7 )
+
+[node name="animal" type="Sprite" parent="."]
+visible = false
+
+[node name="OK" type="TextureButton" parent="animal"]
+material = SubResource( 18 )
+margin_left = 467.0
+margin_top = 462.0
+margin_right = 542.0
+margin_bottom = 530.0
+texture_normal = ExtResource( 11 )
+expand = true
+
+[node name="animalab" type="Label" parent="animal"]
+material = SubResource( 19 )
+margin_left = 419.0
+margin_top = 140.0
+margin_right = 509.0
+margin_bottom = 154.0
+rect_scale = Vector2( 2, 2 )
+text = "PERRO"
+align = 1
+autowrap = true
+
+[node name="foto" type="Sprite" parent="animal"]
+material = SubResource( 20 )
+position = Vector2( 504, 273 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 9 )
+
+[node name="desc" type="Label" parent="animal"]
+material = SubResource( 21 )
+margin_left = 358.0
+margin_top = 377.0
+margin_right = 653.0
+margin_bottom = 432.0
+text = "La iguana es un reptil arbóreo típico de los bosques tropicales de América Central y del Sur. "
+align = 1
+autowrap = true
+
+[node name="pts" type="Label" parent="."]
+material = SubResource( 22 )
+margin_left = 10.0
+margin_top = 575.0
+margin_right = 67.0
+margin_bottom = 589.0
+rect_scale = Vector2( 1.5, 1.5 )
+text = "PUNTOS:"
+
+[node name="pts_n" type="Label" parent="."]
+material = SubResource( 23 )
+margin_left = 101.0
+margin_top = 570.0
+margin_right = 141.0
+margin_bottom = 584.0
+rect_scale = Vector2( 2, 2 )
+text = "30"
+
+[node name="infopa" type="Sprite" parent="."]
+material = SubResource( 24 )
+position = Vector2( 491, 291 )
+scale = Vector2( 0.130831, 0.130831 )
+texture = ExtResource( 18 )
+
+[node name="bot" type="TextureButton" parent="infopa"]
+margin_left = 1307.0
+margin_top = -535.0
+margin_right = 1605.0
+margin_bottom = -260.0
+
+[node name="infope" type="Sprite" parent="."]
+visible = false
+material = SubResource( 25 )
+position = Vector2( 495, 303 )
+scale = Vector2( 0.128686, 0.128686 )
+texture = ExtResource( 19 )
+
+[node name="botp" type="TextureButton" parent="infope"]
+anchor_left = 0.001693
+anchor_top = 0.404715
+anchor_right = 0.001693
+anchor_bottom = 0.425344
+margin_left = 1414.0
+margin_top = -902.0
+margin_right = 1750.0
+margin_bottom = -604.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="mono" to="." method="_on_mono_pressed"]
+[connection signal="pressed" from="oso_peresozo" to="." method="_on_oso_peresozo_pressed"]
+[connection signal="pressed" from="iguana" to="." method="_on_iguana_pressed"]
+[connection signal="pressed" from="pausar" to="." method="_on_pausar_pressed"]
+[connection signal="pressed" from="pausar_ventana/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="pausar_ventana/salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="tigrillo" to="." method="_on_tigrillo_pressed"]
+[connection signal="pressed" from="anhinga" to="." method="_on_anhinga_pressed"]
+[connection signal="pressed" from="animal/OK" to="." method="_on_OK_pressed"]
+[connection signal="pressed" from="infopa/bot" to="." method="_on_bot_pressed"]
+[connection signal="pressed" from="infope/botp" to="." method="_on_botp_pressed"]

@@ -1,0 +1,617 @@
+[gd_scene load_steps=40 format=2]
+
+[ext_resource path="res://assets/Boton Pausa.png" type="Texture" id=1]
+[ext_resource path="res://assets/volumne.png" type="Texture" id=2]
+[ext_resource path="res://assets/Bosque_fondo.png" type="Texture" id=3]
+[ext_resource path="res://BosqueSombra/Light2D_Script.gd" type="Script" id=4]
+[ext_resource path="res://assets/light.png" type="Texture" id=5]
+[ext_resource path="res://assets/venado.png" type="Texture" id=6]
+[ext_resource path="res://assets/corarojo.png" type="Texture" id=7]
+[ext_resource path="res://assets/Boton Finalizar.png" type="Texture" id=8]
+[ext_resource path="res://assets/perro.png" type="Texture" id=9]
+[ext_resource path="res://assets/loro.png" type="Texture" id=10]
+[ext_resource path="res://assets/Botonvisto.png" type="Texture" id=11]
+[ext_resource path="res://assets/Boton 2.png" type="Texture" id=12]
+[ext_resource path="res://assets/Boton Continuar.png" type="Texture" id=13]
+[ext_resource path="res://assets/zorra.png" type="Texture" id=14]
+[ext_resource path="res://assets/rata.png" type="Texture" id=15]
+[ext_resource path="res://assets/bolsero.png" type="Texture" id=16]
+[ext_resource path="res://assets/hormiguero.png" type="Texture" id=17]
+[ext_resource path="res://assets/garza.png" type="Texture" id=18]
+[ext_resource path="res://assets/nivel3.png" type="Texture" id=19]
+[ext_resource path="res://assets/infoperdida.png" type="Texture" id=20]
+
+[sub_resource type="GDScript" id=15]
+script/source = "extends Node2D
+
+var animal_names
+var animal_sounds := [] # Almacena los sonidos de los animales en un arreglo
+var current_round := 0
+var current_animal
+var animal_pressed
+var vidas = 3
+var descripcion = {}
+var puntos = 80
+
+onready var sprite3 = get_node(\"Cora3\")
+onready var sprite2 = get_node(\"Cora2\")
+onready var sprite1 = get_node(\"Cora1\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+
+	animal_sounds = [preload(\"res://sounds/zorra.wav\") as AudioStream,
+					 preload(\"res://sounds/garza.wav\") as AudioStream,
+					 preload(\"res://sounds/venado.wav\") as AudioStream,
+					 preload(\"res://sounds/rata.wav\") as AudioStream,
+					 preload(\"res://sounds/bolsero.wav\") as AudioStream,
+					 preload(\"res://sounds/hormiguero.wav\") as AudioStream,
+					 preload(\"res://sounds/loro.wav\") as AudioStream]
+	animal_names = [\"zorra\", \"garza\",\"venado\",\"rata\",\"bolsero\", \"hormiguero\", \"loro\"]
+	current_animal = animal_names[current_round]
+	$ButtonParlante.connect(\"pressed\", self, \"play_animal_sound\")
+	Reset_Timer()
+	descripcion  = {\"zorra\":\"La zorra pampera es una especie de mediano tamaño dentro de los carnívoros. Es un animal poco frecuente de hallar, con poblaciones pequeñas que solo viven en los bosques secos de Ecuador y Perú.\",\"garza\":\"Es un ave de plumaje blanco, grande y esbelta que puede alcanzar el metro de altura.\",\"venado\":\"El venado de cola blanca es un mamífero rumiante de tamaña grande que presenta un pelaje grisáceo y la parte inferior de la cola es blanca.\",\"rata\":\"La rata espinosa es  de tamaño grande y cuerpo esbelto, con pelaje de color marrón pálido a marrón amarillento \", \"bolsero\":\"Habita bosques y fronteras de bosques, bosques con pocos árboles, jardines, plantaciones y en tierras bajas de bosques húmedos.\",\"hormiguero\":\"El oso hormiguero gigante es un mamífero de tamaño grande que está activo de día y de noche.\", \"loro\":\"El loro de cabeza roja es un loro mediano, totalmente verde intenso en contraste con su cara roja.\"}
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+var seconds = 0
+var minutes = 0 
+var Dseconds = 30
+var Dminutes = 1
+
+func _on_Timer_timeout():
+	if seconds == 0:
+		if minutes > 0:
+			minutes-=1
+			seconds=60
+	seconds-=1
+	
+	if seconds < 10 and minutes < 10:
+		$Label.text=String(0)+String(minutes)+\":\"+String(0)+String(seconds)
+	elif seconds < 10:
+		$Label.text=String(minutes)+\":\"+String(0)+String(seconds)
+	elif minutes < 10:
+		$Label.text=String(0)+String(minutes)+\":\"+String(seconds)
+	else:
+		$Label.text=String(minutes)+\":\"+String(seconds)
+		
+	if seconds == 0 and minutes == 0:
+		get_tree().change_scene(\"res://BosqueSombra/Perdiste.tscn\")
+		
+	pass # Replace with function body.
+	
+	
+func Reset_Timer():
+	seconds = Dseconds
+	minutes = Dminutes
+
+
+func _on_zorra_pressed():
+	animal_pressed = \"zorra\"
+	print(animal_pressed)
+	_on_AnimalButton()
+	
+func _on_garza_pressed():
+	animal_pressed = \"garza\"
+	print(animal_pressed)
+	_on_AnimalButton()
+	
+func _on_venado_pressed():
+	animal_pressed = \"venado\"
+	print(animal_pressed)
+	_on_AnimalButton()
+	
+func _on_rata_pressed():
+	animal_pressed = \"rata\"
+	print(animal_pressed)
+	_on_AnimalButton()
+	
+func _on_bolsero_pressed():
+	animal_pressed = \"bolsero\"
+	print(animal_pressed)
+	_on_AnimalButton()
+	
+func _on_hormiguero_pressed():
+	animal_pressed = \"hormiguero\"
+	print(animal_pressed)
+	_on_AnimalButton()
+	
+func _on_loro_pressed():
+	animal_pressed = \"loro\"
+	print(animal_pressed)
+	_on_AnimalButton()
+
+func play_animal_sound():
+	if current_round < len(animal_sounds):
+		$AudioStreamPlayer.stream = animal_sounds[current_round]
+		$AudioStreamPlayer.play()
+	else:
+		game_over()
+
+func game_over():
+	asiganar_puntos(50)
+	#get_tree().change_scene(\"res://BosqueSombra/Ganaste.tscn\")
+	
+# Agrega esto al script principal para manejar los clics en los animales
+func _on_AnimalButton():
+	# Verifica si el usuario hizo clic en el animal correcto
+	if current_round < len(animal_sounds):
+		if animal_pressed == current_animal:
+			puntos += 10
+			$pts_n.text = str(puntos)
+			mostrar_animal()
+			# El usuario hizo clic en el animal correcto
+			# sonido de algo correcto
+			play_animal_sound()
+			mostrar(animal_pressed)
+			current_round += 1
+			if current_round <= 6:
+				current_animal = animal_names[current_round]
+			print(current_animal)
+			 # Reproduce el siguiente sonido
+		else:
+			$pausar.set_visible(false)
+			$Light2D.set_visible(false)
+			$infope.set_visible(true)
+			vidas -=1
+			fallo_acierto(\"fallo\")
+			#sonido de algo incorrecto
+			
+		if vidas == 2:
+			var new_texture3 = preload(\"res://assets/coragris.png\")
+			sprite3.texture = new_texture3
+			
+			
+		if vidas == 1:
+			var new_texture2 = preload(\"res://assets/coragris.png\")
+			sprite2.texture = new_texture2
+			
+		if vidas == 0:
+			var new_texture1 = preload(\"res://assets/coragris.png\")
+			sprite1.texture = new_texture1
+			get_tree().change_scene(\"res://BosqueSombra/Perdiste.tscn\")
+			#Cambia a la siguiente escena
+	else:
+		game_over()
+
+func mostrar_animal():
+	if animal_pressed == \"zorra\":
+		var new_modulate_color = Color(1, 1, 1, 1) 
+		$zorra.modulate = new_modulate_color
+		
+	if animal_pressed == \"garza\":
+		var new_modulate_color = Color(1, 1, 1, 1) 
+		$garza.modulate = new_modulate_color
+		
+	if animal_pressed == \"venado\":
+		var new_modulate_color = Color(1, 1, 1, 1) 
+		$venado.modulate = new_modulate_color
+		
+	if animal_pressed == \"rata\":
+		var new_modulate_color = Color(1, 1, 1, 1) 
+		$rata.modulate = new_modulate_color
+		
+	if animal_pressed == \"bolsero\":
+		var new_modulate_color = Color(1, 1, 1, 1) 
+		$bolsero.modulate = new_modulate_color
+		
+	if animal_pressed == \"hormiguero\":
+		var new_modulate_color = Color(1, 1, 1, 1) 
+		$hormiguero.modulate = new_modulate_color
+		
+	if animal_pressed == \"loro\":
+		var new_modulate_color = Color(1, 1, 1, 1) 
+		$loro.modulate = new_modulate_color
+		
+
+func _on_TextureButton2_pressed():
+	pass # Replace with function body.
+
+func _on_pausar_pressed():
+	$AudioStreamPlayer.stream = preload(\"res://sounds/click.wav\") as AudioStream
+	$AudioStreamPlayer.play()
+	$pausar_ventana.set_visible(true)
+	$Light2D.set_visible(false)
+	
+func _on_resume_pressed():
+	$AudioStreamPlayer.stream = preload(\"res://sounds/click.wav\") as AudioStream
+	$AudioStreamPlayer.play()
+	$pausar_ventana.set_visible(false)
+	$Light2D.set_visible(true)
+
+func _on_salir_pressed():
+	$AudioStreamPlayer.stream = preload(\"res://sounds/click.wav\") as AudioStream
+	$AudioStreamPlayer.play()
+	get_tree().change_scene(\"res://BosqueSombra/BosqueMenu.tscn\")
+
+
+func asiganar_puntos(puntos:int):
+	GameManager.loadJson()
+	for i in GameManager.allPlayers.keys():
+		if i==GameManager.currentPlayer:
+			GameManager.allPlayers[i][\"monedas\"]+=puntos;
+	GameManager.saveJson(GameManager.allPlayers)
+
+func fallo_acierto(fa:String):
+	if fa == \"fallo\":
+		$AudioStreamPlayer.stream = preload(\"res://sounds/fallo.wav\") as AudioStream
+		$AudioStreamPlayer.play()
+	if fa == \"acierto\":
+		$AudioStreamPlayer.stream = preload(\"res://sounds/acierto.wav\") as AudioStream
+		$AudioStreamPlayer.play()
+
+func mostrar(animal:String):
+	var scale = Vector2(0.25, 0.25)  # Change these values as needed
+	$animal/animalab.text = animal.to_upper()
+	$animal/foto.texture = load(\"res://assets/\"+animal+\".png\")
+	$animal/foto.scale = scale
+	$animal/desc.text = descripcion[animal]
+	$animal.set_visible(true)
+	$Light2D.set_visible(false)
+	
+	
+func _on_OK_pressed():
+	$animal.set_visible(false)
+	$Light2D.set_visible(true)
+	$AudioStreamPlayer.stream = preload(\"res://sounds/click.wav\") as AudioStream
+	$AudioStreamPlayer.play()
+	if current_round == 7:
+		get_tree().change_scene(\"res://BosqueSombra/Ganaste.tscn\")
+		
+func _on_bot_pressed():
+		$pausar.set_visible(true)
+		$AudioStreamPlayer.stream = preload(\"res://sounds/click.wav\") as AudioStream
+		$AudioStreamPlayer.play()
+		$Light2D.set_visible(true)
+		$infopa.set_visible(false)
+
+func _on_botp_pressed():
+		$pausar.set_visible(true)
+		$AudioStreamPlayer.stream = preload(\"res://sounds/click.wav\") as AudioStream
+		$AudioStreamPlayer.play()
+		$Light2D.set_visible(true)
+		$infope.set_visible(false)
+"
+
+[sub_resource type="CanvasItemMaterial" id=4]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=5]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=6]
+render_priority = 7
+blend_mode = 1
+
+[sub_resource type="ImageTexture" id=7]
+
+[sub_resource type="CanvasItemMaterial" id=17]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=18]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=14]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=16]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=19]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=20]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=21]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=22]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=23]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=24]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=25]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=26]
+blend_mode = 1
+
+[node name="Node2D" type="Node2D"]
+script = SubResource( 15 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 2256.0
+margin_bottom = 1336.0
+rect_scale = Vector2( 0.454, 0.45 )
+texture = ExtResource( 3 )
+expand = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="TextureRect"]
+scale = Vector2( 2.20264, 2.22222 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color( 0.807843, 0.835294, 1, 1 )
+material = SubResource( 4 )
+margin_left = 449.0
+margin_top = 15.0
+margin_right = 844.0
+margin_bottom = 153.0
+rect_scale = Vector2( 0.238, 0.34 )
+texture = ExtResource( 12 )
+expand = true
+
+[node name="Label" type="Label" parent="."]
+material = SubResource( 1 )
+margin_left = 465.0
+margin_top = 27.0
+margin_right = 505.0
+margin_bottom = 41.0
+rect_scale = Vector2( 1.8, 1.8 )
+text = "00:00"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+position = Vector2( 745, 184 )
+scale = Vector2( 0.294922, 0.294922 )
+texture = ExtResource( 5 )
+script = ExtResource( 4 )
+
+[node name="rata" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 185.0
+margin_top = 517.0
+margin_right = 229.0
+margin_bottom = 561.0
+rect_rotation = -6.6
+texture_normal = ExtResource( 15 )
+expand = true
+
+[node name="ButtonParlante" type="TextureButton" parent="."]
+material = SubResource( 2 )
+margin_left = 959.0
+margin_top = 536.0
+margin_right = 1017.0
+margin_bottom = 594.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="hormiguero" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 947.0
+margin_top = 312.0
+margin_right = 1008.0
+margin_bottom = 366.0
+texture_normal = ExtResource( 17 )
+expand = true
+
+[node name="bolsero" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 40.0
+margin_top = 141.0
+margin_right = 100.0
+margin_bottom = 190.0
+rect_rotation = -6.6
+texture_normal = ExtResource( 16 )
+expand = true
+
+[node name="pausar" type="TextureButton" parent="."]
+visible = false
+material = SubResource( 5 )
+margin_left = 969.0
+margin_top = 11.0
+margin_right = 1011.0
+margin_bottom = 52.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="pausar_ventana" type="Sprite" parent="."]
+visible = false
+material = SubResource( 6 )
+position = Vector2( 506, 298 )
+normal_map = SubResource( 7 )
+
+[node name="resume" type="TextureButton" parent="pausar_ventana"]
+light_mask = 0
+material = SubResource( 17 )
+margin_left = -110.0
+margin_top = -41.0
+margin_right = 105.0
+margin_bottom = 43.0
+texture_normal = ExtResource( 13 )
+expand = true
+
+[node name="salir" type="TextureButton" parent="pausar_ventana"]
+material = SubResource( 18 )
+margin_left = -83.0
+margin_top = 72.0
+margin_right = 78.0
+margin_bottom = 135.0
+texture_normal = ExtResource( 8 )
+expand = true
+
+[node name="zorra" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 707.0
+margin_top = 501.0
+margin_right = 831.0
+margin_bottom = 593.0
+texture_normal = ExtResource( 14 )
+expand = true
+
+[node name="loro" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 758.0
+margin_top = 121.0
+margin_right = 798.0
+margin_bottom = 178.0
+texture_normal = ExtResource( 10 )
+expand = true
+
+[node name="Label2" type="Label" parent="."]
+material = SubResource( 14 )
+margin_left = 476.0
+margin_top = 68.0
+margin_right = 525.0
+margin_bottom = 82.0
+text = "NIVEL 3"
+
+[node name="Cora1" type="Sprite" parent="."]
+material = SubResource( 16 )
+position = Vector2( 31, 25 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 7 )
+
+[node name="Cora2" type="Sprite" parent="."]
+material = SubResource( 16 )
+position = Vector2( 67, 25 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 7 )
+
+[node name="Cora3" type="Sprite" parent="."]
+material = SubResource( 16 )
+position = Vector2( 104, 25 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 7 )
+
+[node name="garza" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 270.0
+margin_top = 117.0
+margin_right = 406.0
+margin_bottom = 208.0
+texture_normal = ExtResource( 18 )
+expand = true
+
+[node name="venado" type="TextureButton" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 144.0
+margin_top = 294.0
+margin_right = 282.0
+margin_bottom = 432.0
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="animal" type="Sprite" parent="."]
+visible = false
+
+[node name="OK" type="TextureButton" parent="animal"]
+material = SubResource( 19 )
+margin_left = 467.0
+margin_top = 462.0
+margin_right = 542.0
+margin_bottom = 530.0
+texture_normal = ExtResource( 11 )
+expand = true
+
+[node name="animalab" type="Label" parent="animal"]
+material = SubResource( 20 )
+margin_left = 402.0
+margin_top = 140.0
+margin_right = 500.0
+margin_bottom = 154.0
+rect_scale = Vector2( 2, 2 )
+text = "PERRO"
+align = 1
+autowrap = true
+
+[node name="foto" type="Sprite" parent="animal"]
+material = SubResource( 21 )
+position = Vector2( 504, 273 )
+scale = Vector2( 0.226563, 0.226563 )
+texture = ExtResource( 9 )
+
+[node name="desc" type="Label" parent="animal"]
+material = SubResource( 22 )
+margin_left = 306.0
+margin_top = 387.0
+margin_right = 706.0
+margin_bottom = 442.0
+text = "La iguana es un reptil arbóreo típico de los bosques tropicales de América Central y del Sur. "
+align = 1
+autowrap = true
+
+[node name="pts" type="Label" parent="."]
+material = SubResource( 23 )
+margin_left = 10.0
+margin_top = 575.0
+margin_right = 67.0
+margin_bottom = 589.0
+rect_scale = Vector2( 1.5, 1.5 )
+text = "PUNTOS:"
+
+[node name="pts_n" type="Label" parent="."]
+material = SubResource( 24 )
+margin_left = 101.0
+margin_top = 570.0
+margin_right = 141.0
+margin_bottom = 584.0
+rect_scale = Vector2( 2, 2 )
+text = "80"
+
+[node name="infopa" type="Sprite" parent="."]
+material = SubResource( 25 )
+position = Vector2( 491, 291 )
+scale = Vector2( 0.130831, 0.130831 )
+texture = ExtResource( 19 )
+
+[node name="bot" type="TextureButton" parent="infopa"]
+margin_left = 1307.0
+margin_top = -535.0
+margin_right = 1605.0
+margin_bottom = -260.0
+
+[node name="infope" type="Sprite" parent="."]
+visible = false
+material = SubResource( 26 )
+position = Vector2( 495, 303 )
+scale = Vector2( 0.128686, 0.128686 )
+texture = ExtResource( 20 )
+
+[node name="botp" type="TextureButton" parent="infope"]
+anchor_left = 0.001693
+anchor_top = 0.404715
+anchor_right = 0.001693
+anchor_bottom = 0.425344
+margin_left = 1414.0
+margin_top = -902.0
+margin_right = 1750.0
+margin_bottom = -604.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="pressed" from="rata" to="." method="_on_rata_pressed"]
+[connection signal="pressed" from="hormiguero" to="." method="_on_hormiguero_pressed"]
+[connection signal="pressed" from="bolsero" to="." method="_on_bolsero_pressed"]
+[connection signal="pressed" from="pausar" to="." method="_on_pausar_pressed"]
+[connection signal="pressed" from="pausar_ventana/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="pausar_ventana/salir" to="." method="_on_salir_pressed"]
+[connection signal="pressed" from="zorra" to="." method="_on_zorra_pressed"]
+[connection signal="pressed" from="loro" to="." method="_on_loro_pressed"]
+[connection signal="pressed" from="garza" to="." method="_on_garza_pressed"]
+[connection signal="pressed" from="venado" to="." method="_on_venado_pressed"]
+[connection signal="pressed" from="animal/OK" to="." method="_on_OK_pressed"]
+[connection signal="pressed" from="infopa/bot" to="." method="_on_bot_pressed"]
+[connection signal="pressed" from="infope/botp" to="." method="_on_botp_pressed"]

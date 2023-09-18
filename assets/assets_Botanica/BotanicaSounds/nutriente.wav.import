@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/nutriente.wav-7623e928fbf71cf6db464b15e6e9c498.sample"
+
+[deps]
+
+source_file="res://assets/assets_Botanica/BotanicaSounds/nutriente.wav"
+dest_files=[ "res://.import/nutriente.wav-7623e928fbf71cf6db464b15e6e9c498.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
